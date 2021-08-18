@@ -17,6 +17,8 @@ locals {
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
+  role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
+  user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
   private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
   private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
   private_c_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-c", null)
@@ -32,7 +34,17 @@ locals {
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
 }
 
-// VPC info
+// IAM
+data "aws_iam_policy" "role_permission_boundary" {
+  count = local.role_permission_boundary_arn != null ? 1 : 0
+  arn   = local.role_permission_boundary_arn
+}
+data "aws_iam_policy" "user_permission_boundary" {
+  count = local.user_permission_boundary_arn != null ? 1 : 0
+  arn   = local.user_permission_boundary_arn
+}
+
+// VPC
 data "aws_vpc" "vpc" {
   tags = {
     Name : local.vpc_name

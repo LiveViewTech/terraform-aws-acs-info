@@ -1,3 +1,11 @@
+// IAM outputs
+output "role_permissions_boundary" {
+  value = local.role_permission_boundary_arn != null ? data.aws_iam_policy.role_permission_boundary[0] : null
+}
+output "user_permissions_boundary" {
+  value = local.user_permission_boundary_arn != null ? data.aws_iam_policy.user_permission_boundary[0] : null
+}
+
 // VPC outputs
 output "vpc" {
   value = data.aws_vpc.vpc
