@@ -11,7 +11,7 @@ output "vpc" {
   value = data.aws_vpc.vpc
 }
 output "private_subnet_ids" {
-  value = local.private_a_subnet_id != null ? [data.aws_subnet.private_a[0].id, data.aws_subnet.private_b[0].id, data.aws_subnet.private_c[0], data.aws_subnet.private_d[0]] : null
+  value = local.private_a_subnet_id != null ? [data.aws_subnet.private_a[0].id, data.aws_subnet.private_b[0].id, data.aws_subnet.private_c[0].id, data.aws_subnet.private_d[0].id] : null
 }
 output "public_subnet_ids" {
   value = local.public_a_subnet_id != null ? [data.aws_subnet.public_a[0].id, data.aws_subnet.public_b[0].id, data.aws_subnet.public_c[0].id, data.aws_subnet.public_d[0].id] : null
