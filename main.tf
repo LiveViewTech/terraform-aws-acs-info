@@ -111,6 +111,17 @@ data "aws_acm_certificate" "cert" {
   domain = trim(data.aws_route53_zone.zone[0].name, ".")
 }
 
+provider "aws" {
+  alias  = "virginia"
+  region = "us-east-1"
+}
+data "aws_acm_certificate" "virginia" {
+  count    = local.zone_id != null ? 1 : 0
+  provider = aws.virginia
+  // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
+  domain = trim(data.aws_route53_zone.zone[0].name, ".")
+}
+
 // RDS info
 data "aws_db_subnet_group" "db_subnet_group" {
   name = "${local.vpc_name}-db-subnet-group"
