@@ -19,6 +19,7 @@ locals {
 
   role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
   user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
+  odo_security_group_arn       = lookup(local.acs_info, "/acs/odo/${local.vpc_name}-security-group", null)
   private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
   private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
   private_c_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-c", null)
@@ -112,17 +113,28 @@ data "aws_acm_certificate" "cert" {
 }
 
 provider "aws" {
-  alias  = "virginia"
+  alias  = "east"
   region = "us-east-1"
+  profile = var.profile
 }
+
 data "aws_acm_certificate" "virginia" {
   count    = local.zone_id != null ? 1 : 0
-  provider = aws.virginia
+  provider = aws.east
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
   domain = trim(data.aws_route53_zone.zone[0].name, ".")
+}
+
+data "aws_iam_account_alias" "east" {
+  provider = aws.east
 }
 
 // RDS info
 data "aws_db_subnet_group" "db_subnet_group" {
   name = "${local.vpc_name}-db-subnet-group"
+}
+
+// Security Groups
+data "aws_security_group" "odo_security_group" {
+  id = local.odo_security_group_arn
 }
