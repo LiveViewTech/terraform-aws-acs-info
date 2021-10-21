@@ -8,7 +8,7 @@ This module retrieves some basic [ACS](https://bitbucket.org/liveviewtech/aws-ac
 
 ```hcl
 module "acs" {
-  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.0.3"
+  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.1.0"
 }
 ```
 
@@ -29,6 +29,7 @@ After defining the module you can then retrieve the information you need (see av
 | Name              | Type | Description                                                 | Default Value |
 | ----------------- | ---- | ----------------------------------------------------------- | ------------- |
 | edge | bool | Retrieve VPC info for the VPC that has Edge connectivity | false         |
+| profile | string | Terrraform provider profile being used | default         |
 
 ## Output
 
@@ -46,5 +47,7 @@ After defining the module you can then retrieve the information you need (see av
 | route53_zone              | [object](https://www.terraform.io/docs/providers/aws/r/route53_zone.html#attributes-reference)           | The Route53 zone object                                                                                               |
 | certificate               | [object](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html#attributes-reference)        | The default zone's ACM certificate object)                                                                            |
 | db_subnet_group           | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/db_subnet_group) | The database subnet group for RDS in the specified VPC object                                                         |
+| elasticache_subnet_group_name           | string | The elasticache subnet group name used to specifynsubnets in a VPC                                                         |
+| odo_security_group           | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group) | The security group to allow access to application through Odo                                                        |
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.
