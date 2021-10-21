@@ -44,3 +44,8 @@ output "certificate_virginia" {
 output "db_subnet_group" {
   value = data.aws_db_subnet_group.db_subnet_group
 }
+
+// ElastiCache Outputs
+output "elasticache_subnet_group_name" {
+  value = "${local.vpc_name}-elasticache-subnet-group"
+}

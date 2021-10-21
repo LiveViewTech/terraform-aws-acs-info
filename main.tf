@@ -112,14 +112,20 @@ data "aws_acm_certificate" "cert" {
 }
 
 provider "aws" {
-  alias  = "virginia"
+  alias  = "east"
   region = "us-east-1"
+  profile = var.profile
 }
+
 data "aws_acm_certificate" "virginia" {
   count    = local.zone_id != null ? 1 : 0
-  provider = aws.virginia
+  provider = aws.east
   // route53 zone includes a "." at the end of the zone name and the certificate can only be retrieved without the "."
   domain = trim(data.aws_route53_zone.zone[0].name, ".")
+}
+
+data "aws_iam_account_alias" "east" {
+  provider = aws.east
 }
 
 // RDS info
