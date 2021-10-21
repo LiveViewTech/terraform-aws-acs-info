@@ -6,6 +6,10 @@ output "user_permissions_boundary" {
   value = local.user_permission_boundary_arn != null ? data.aws_iam_policy.user_permission_boundary[0] : null
 }
 
+output "powerbuilder_role" {
+  value = local.powerbuilder_role_arn != null ? data.aws_iam_role.power_builder[0] : null
+}
+
 // VPC outputs
 output "vpc" {
   value = data.aws_vpc.vpc
