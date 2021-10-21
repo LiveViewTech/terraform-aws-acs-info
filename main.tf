@@ -19,6 +19,7 @@ locals {
 
   role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
   user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
+  powerbuilder_role_arn = lookup(local.acs_info, "/acs/iam/powerbuilder-role", null)
   odo_security_group_arn       = lookup(local.acs_info, "/acs/odo/${local.vpc_name}-security-group", null)
   private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
   private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
@@ -43,6 +44,11 @@ data "aws_iam_policy" "role_permission_boundary" {
 data "aws_iam_policy" "user_permission_boundary" {
   count = local.user_permission_boundary_arn != null ? 1 : 0
   arn   = local.user_permission_boundary_arn
+}
+
+data "aws_iam_role" "power_builder" {
+  count = local.powerbuilder_role_arn != null ? 1 : 0
+  name = "PowerBuilder"
 }
 
 // VPC
