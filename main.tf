@@ -133,3 +133,8 @@ data "aws_iam_account_alias" "east" {
 data "aws_db_subnet_group" "db_subnet_group" {
   name = "${local.vpc_name}-db-subnet-group"
 }
+
+// Security Groups
+data "aws_security_group" "odo_security_group" {
+  id = local.odo_security_group_arn
+}

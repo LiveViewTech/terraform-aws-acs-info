@@ -51,6 +51,6 @@ output "elasticache_subnet_group_name" {
 }
 
 // Security Groups
-output "odo_security_group_arn" {
-  value = local.odo_security_group_arn
+output "odo_security_group" {
+  value = data.aws_security_group.odo_security_group
 }
