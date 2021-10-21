@@ -19,6 +19,7 @@ locals {
 
   role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
   user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
+  odo_security_group_arn       = lookup(local.acs_info, "/acs/odo/${local.vpc_name}-security-group", null)
   private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
   private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
   private_c_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-c", null)

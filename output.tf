@@ -49,3 +49,8 @@ output "db_subnet_group" {
 output "elasticache_subnet_group_name" {
   value = "${local.vpc_name}-elasticache-subnet-group"
 }
+
+// Security Groups
+output "odo_security_group_arn" {
+  value = local.odo_security_group_arn
+}
