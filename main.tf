@@ -142,5 +142,6 @@ data "aws_db_subnet_group" "db_subnet_group" {
 
 // Security Groups
 data "aws_security_group" "odo_security_group" {
+  count = local.odo_security_group_arn != null ? 1 : 0
   id = local.odo_security_group_arn
 }
