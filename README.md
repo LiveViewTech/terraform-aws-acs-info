@@ -8,7 +8,7 @@ This module retrieves some basic [ACS](https://bitbucket.org/liveviewtech/aws-ac
 
 ```hcl
 module "acs" {
-  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.2.0"
+  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.2.1"
 }
 ```
 
@@ -50,5 +50,6 @@ After defining the module you can then retrieve the information you need (see av
 | db_subnet_group                | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/db_subnet_group#attributes-reference) | The database subnet group for RDS in the specified VPC object      |
 | elasticache_subnet_group_name  | string                                                                                                                        | The elasticache subnet group name used to specify subnets in a VPC |
 | odo_security_group             | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group#attributes-reference)  | The security group to allow access to applications through Odo     |
+| message_store_security_group   | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group#attributes-reference)  | The security group to allow access to the Message Store            |
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.
