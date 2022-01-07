@@ -60,5 +60,5 @@ output "odo_security_group" {
 }
 
 output "message_store_security_group" {
-  value = local.message_store_sg != null ? data.aws_security_group.message_store_group : null
+  value = local.message_store_sg != null ? data.aws_security_group.message_store_group[0] : null
 }
