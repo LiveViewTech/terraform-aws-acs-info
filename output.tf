@@ -58,3 +58,7 @@ output "elasticache_subnet_group_name" {
 output "odo_security_group" {
   value = local.odo_security_group_arn != null ? data.aws_security_group.odo_security_group : null
 }
+
+output "message_store_security_group" {
+  value = local.message_store_sg != null ? data.aws_security_group.message_store_group : null
+}
