@@ -1,4 +1,4 @@
-// IAM outputs
+// IAM Outputs
 output "role_permissions_boundary" {
   value = local.role_permission_boundary_arn != null ? data.aws_iam_policy.role_permission_boundary[0] : null
 }
@@ -10,7 +10,7 @@ output "powerbuilder_role" {
   value = local.powerbuilder_role_arn != null ? data.aws_iam_role.power_builder[0] : null
 }
 
-// VPC outputs
+// VPC Outputs
 output "vpc" {
   value = data.aws_vpc.vpc
 }
@@ -33,7 +33,7 @@ output "data_subnets" {
   value = local.data_a_subnet_id != null ? [data.aws_subnet.data_a[0], data.aws_subnet.data_b[0], data.aws_subnet.data_c[0], data.aws_subnet.data_d[0]] : null
 }
 
-// DNS outputs
+// DNS Outputs
 output "route53_zone" {
   value = local.zone_id != null ? data.aws_route53_zone.zone[0] : null
 }
@@ -54,11 +54,20 @@ output "elasticache_subnet_group_name" {
   value = "${local.vpc_name}-elasticache-subnet-group"
 }
 
-// Security Groups
+// Security Group Outputs
 output "odo_security_group" {
   value = local.odo_security_group_arn != null ? data.aws_security_group.odo_security_group : null
 }
 
 output "message_store_security_group" {
   value = local.message_store_sg != null ? data.aws_security_group.message_store_group[0] : null
+}
+
+// Account Outputs
+output "account_type" {
+  value = local.account_type
+}
+
+output "account_environment" {
+  value = local.account_environment
 }
