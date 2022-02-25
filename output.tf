@@ -1,3 +1,10 @@
+output "account_type" {
+  value = local.account_type
+}
+output "account_environment" {
+  value = local.account_environment
+}
+
 output "role_permissions_boundary" {
   value = local.role_permission_boundary_arn != null ? data.aws_iam_policy.role_permission_boundary[0] : null
 }
@@ -55,12 +62,4 @@ output "odo_security_group" {
 
 output "message_store_security_group" {
   value = local.message_store_sg != null ? data.aws_security_group.message_store_group[0] : null
-}
-
-output "account_type" {
-  value = local.account_type
-}
-
-output "account_environment" {
-  value = local.account_environment
 }
