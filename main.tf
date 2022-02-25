@@ -17,12 +17,12 @@ locals {
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
-  account_type = lookup(local.acs_info, "/acs/account/type", null)
+  account_type        = lookup(local.acs_info, "/acs/account/type", null)
   account_environment = lookup(local.acs_info, "/acs/account/environment", null)
 
   role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
   user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
-  powerbuilder_role_arn = lookup(local.acs_info, "/acs/iam/powerbuilder-role", null)
+  powerbuilder_role_arn        = lookup(local.acs_info, "/acs/iam/powerbuilder-role", null)
   odo_security_group_arn       = lookup(local.acs_info, "/acs/odo/${local.vpc_name}-security-group", null)
   private_a_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-a", null)
   private_b_subnet_id          = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-private-b", null)
@@ -40,7 +40,6 @@ locals {
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
 }
 
-// IAM
 data "aws_iam_policy" "role_permission_boundary" {
   count = local.role_permission_boundary_arn != null ? 1 : 0
   arn   = local.role_permission_boundary_arn
@@ -52,10 +51,9 @@ data "aws_iam_policy" "user_permission_boundary" {
 
 data "aws_iam_role" "power_builder" {
   count = local.powerbuilder_role_arn != null ? 1 : 0
-  name = "PowerBuilder"
+  name  = "PowerBuilder"
 }
 
-// VPC
 data "aws_vpc" "vpc" {
   tags = {
     Name : local.vpc_name
@@ -111,7 +109,6 @@ data "aws_subnet" "public_d" {
   id    = local.public_d_subnet_id
 }
 
-// DNS info
 data "aws_route53_zone" "zone" {
   count   = local.zone_id != null ? 1 : 0
   zone_id = local.zone_id
@@ -123,8 +120,8 @@ data "aws_acm_certificate" "cert" {
 }
 
 provider "aws" {
-  alias  = "east"
-  region = "us-east-1"
+  alias   = "east"
+  region  = "us-east-1"
   profile = var.profile
 }
 
@@ -139,18 +136,16 @@ data "aws_iam_account_alias" "east" {
   provider = aws.east
 }
 
-// RDS info
 data "aws_db_subnet_group" "db_subnet_group" {
   name = "${local.vpc_name}-db-subnet-group"
 }
 
-// Security Groups
 data "aws_security_group" "odo_security_group" {
   count = local.odo_security_group_arn != null ? 1 : 0
-  id = local.odo_security_group_arn
+  id    = local.odo_security_group_arn
 }
 
 data "aws_security_group" "message_store_group" {
   count = local.message_store_sg != null ? 1 : 0
-  id = local.message_store_sg
+  id    = local.message_store_sg
 }

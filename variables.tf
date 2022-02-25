@@ -1,4 +1,3 @@
-
 variable "edge" {
   type        = bool
   default     = false
@@ -6,7 +5,7 @@ variable "edge" {
 }
 
 variable "profile" {
-  type    = string
-  default = "default"
+  type        = string
+  default     = "default"
   description = "Terraform provider profile if default is not being used"
 }
