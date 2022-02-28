@@ -1,8 +1,8 @@
 output "account_type" {
   value = local.account_type
 }
-output "account_environment" {
-  value = local.account_environment
+output "account_env" {
+  value = local.account_env
 }
 
 output "role_permissions_boundary" {
