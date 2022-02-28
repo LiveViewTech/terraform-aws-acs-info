@@ -8,7 +8,7 @@ This module retrieves some basic [ACS](https://bitbucket.org/liveviewtech/aws-ac
 
 ```hcl
 module "acs" {
-  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.3.0"
+  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.3.1"
 }
 ```
 
@@ -35,7 +35,7 @@ After defining the module you can then retrieve the information you need (see av
 | Name                          | Type                                                                                                                          | Description                                                        |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | account_type                  | string                                                                                                                        | The type of account (business, service, platform, etc)             |
-| account_environment           | string                                                                                                                        | The environment designation of the account (dev, stg, prd)         |
+| account_env                   | string                                                                                                                        | The three-letter environment designation of the account            |
 | role_permissions_boundary     | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)                                  | The IAM role permissions boundary policy object                    |
 | user_permissions_boundary     | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)                                  | The IAM user permissions boundary policy object                    |
 | powerbuilder_role             | [object](https://www.terraform.io/docs/providers/aws/d/iam_role.html#attributes-reference)                                    | The IAM PowerBuilder role object object                            |

@@ -17,8 +17,8 @@ locals {
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
-  account_type        = lookup(local.acs_info, "/acs/account/type", null)
-  account_environment = lookup(local.acs_info, "/acs/account/environment", null)
+  account_type = lookup(local.acs_info, "/acs/account/type", null)
+  account_env  = lookup(local.acs_info, "/acs/account/env", null)
 
   role_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamRolePermissionBoundary", null)
   user_permission_boundary_arn = lookup(local.acs_info, "/acs/iam/iamUserPermissionBoundary", null)
