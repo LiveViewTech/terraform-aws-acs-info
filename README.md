@@ -8,7 +8,7 @@ This module retrieves some basic [ACS](https://bitbucket.org/liveviewtech/aws-ac
 
 ```hcl
 module "acs" {
-  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.3.1"
+  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.4.0"
 }
 ```
 
