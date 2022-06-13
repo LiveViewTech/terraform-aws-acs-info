@@ -8,7 +8,7 @@ This module retrieves some basic [ACS](https://bitbucket.org/liveviewtech/aws-ac
 
 ```hcl
 module "acs" {
-  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v1.3.1"
+  source = "bitbucket.org/liveviewtech/terraform-aws-acs-info.git?ref=v2.0.0"
 }
 ```
 
@@ -25,15 +25,17 @@ After defining the module you can then retrieve the information you need (see av
 
 ## Input
 
-| Name    | Type   | Description                                              | Default Value |
-| ------- | ------ | -------------------------------------------------------- | ------------- |
-| edge    | bool   | Retrieve VPC info for the VPC that has Edge connectivity | false         |
-| profile | string | Terrraform provider profile being used                   | default       |
+| Name     | Type   | Description                              | Default Value |
+|----------|--------|------------------------------------------|---------------|
+| vpc_type | string | Retrieve VPC info for a certain VPC type | non-edge      |
+| profile  | string | Terrraform provider profile being used   | default       |
+
+```vpc_type``` must be one of the following: non-edge, edge, operations, workspaces. (Not all types are avaliable for every AWS account.)
 
 ## Output
 
 | Name                          | Type                                                                                                                          | Description                                                        |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
 | account_type                  | string                                                                                                                        | The type of account (business, service, platform, etc)             |
 | account_env                   | string                                                                                                                        | The three-letter environment designation of the account            |
 | role_permissions_boundary     | [object](https://www.terraform.io/docs/providers/aws/d/iam_policy.html#attributes-reference)                                  | The IAM role permissions boundary policy object                    |

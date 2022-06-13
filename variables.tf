@@ -1,7 +1,12 @@
-variable "edge" {
-  type        = bool
-  default     = false
-  description = "Retrieve VPC info for the VPC that has Edge Connectivity (defaults to false)."
+variable "vpc_type" {
+  type        = string
+  default     = "non-edge"
+  description = "Retrieve VPC info for the corresponding VPC type. (defaults to non-edge)."
+
+  validation {
+    condition     = contains(["non-edge", "edge", "operations"], var.vpc_type)
+    error_message = "Valid values for var: vpc_type are (null, edge, operations)."
+  } 
 }
 
 variable "profile" {

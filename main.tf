@@ -13,7 +13,7 @@ data "aws_ssm_parameter" "acs_parameters" {
 }
 
 locals {
-  vpc_name = var.edge ? lookup(local.acs_info, "/acs/vpc/vpc-name/edge") : lookup(local.acs_info, "/acs/vpc/vpc-name")
+  vpc_name = var.vpc_type == "non-edge" ? lookup(local.acs_info, "/acs/vpc/vpc-name") : lookup(local.acs_info, "/acs/vpc/vpc-name/${var.vpc_type}")
 
   acs_info = jsondecode(data.aws_ssm_parameter.acs_parameters.value)
 
