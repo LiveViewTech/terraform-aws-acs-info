@@ -55,5 +55,6 @@ After defining the module you can then retrieve the information you need (see av
 | elasticache_subnet_group_name | string                                                                                                                        | The elasticache subnet group name used to specify subnets in a VPC |
 | odo_security_group            | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group#attributes-reference)  | The security group to allow access to applications through Odo     |
 | message_store_security_group  | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group#attributes-reference)  | The security group to allow access to the Message Store            |
+| horus_security_group  | [object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group#attributes-reference)          | The security group to allow access to Horus                        |
 
 **Note about returning objects**: Because objects are returned (as opposed to just values), autocomplete may not work. Just add on the key to the end out the output accessor. Even though autocomplete won't work, those values will still be correctly returned.

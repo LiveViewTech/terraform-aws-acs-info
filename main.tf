@@ -37,6 +37,7 @@ locals {
   public_c_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-c", null)
   public_d_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-d", null)
   message_store_sg             = lookup(local.acs_info, "/acs/vpc/message-store-sg", null)
+  horus_store_sg               = lookup(local.acs_info, "/acs/vpc/horus-sg", null)
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
 }
 
@@ -148,4 +149,9 @@ data "aws_security_group" "odo_security_group" {
 data "aws_security_group" "message_store_group" {
   count = local.message_store_sg != null ? 1 : 0
   id    = local.message_store_sg
+}
+
+data "aws_security_group" "horus_security_group" {
+  count = local.horus_store_sg != null ? 1 : 0
+  id    = local.horus_store_sg
 }
