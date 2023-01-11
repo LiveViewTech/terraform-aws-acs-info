@@ -56,6 +56,10 @@ output "elasticache_subnet_group_name" {
   value = "${local.vpc_name}-elasticache-subnet-group"
 }
 
+output "otel_url" {
+  value = local.otel_url != null ? local.otel_url : null
+}
+
 output "odo_security_group" {
   value = local.odo_security_group_arn != null ? data.aws_security_group.odo_security_group[0] : null
 }
