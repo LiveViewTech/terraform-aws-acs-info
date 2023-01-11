@@ -37,7 +37,7 @@ locals {
   public_c_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-c", null)
   public_d_subnet_id           = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}-public-d", null)
   otel_url                     = lookup(local.acs_info, "/acs/vpc/telemetry", null)
-  message_store_sg             = lookup(local.acs_info, "/acs/vpc/message-store-sg", null)
+  message_store_sg             = lookup(local.acs_info, "/acs/vpc/${local.vpc_name}/telemetry", null)
   horus_sg                     = lookup(local.acs_info, "/acs/vpc/horus-sg", null)
   zone_id                      = lookup(local.acs_info, "/acs/dns/zone-id", null)
 }
