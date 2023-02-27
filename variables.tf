@@ -6,11 +6,11 @@ variable "vpc_type" {
   validation {
     condition     = contains(["non-edge", "edge", "operations"], var.vpc_type)
     error_message = "Valid values for var: vpc_type are (null, edge, operations)."
-  } 
+  }
 }
 
 variable "profile" {
   type        = string
-  default     = "default"
+  default     = null
   description = "Terraform provider profile if default is not being used"
 }
