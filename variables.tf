@@ -4,9 +4,9 @@ variable "vpc_type" {
   description = "Retrieve VPC info for the corresponding VPC type. (defaults to non-edge)."
 
   validation {
-    condition     = contains(["non-edge", "edge", "operations", "main"], var.vpc_type)
+    condition     = contains(["non-edge", "edge", "operations", "main", "int"], var.vpc_type)
     error_message = "Valid values for var: vpc_type are (null, edge, operations)."
-  } 
+  }
 }
 
 variable "profile" {
